@@ -1,0 +1,19 @@
+services:
+  web:
+    # Use watch/sync features using Docker Compose V2 Develop block
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /var/www/html
+          ignore:
+            - .git/
+            - data/
+    # Alternatively, keep using standard bind mounts for instant reload
+    volumes:
+      - .:/var/www/html
+
+  db:
+    # Bellow can be mapped during dev to pre-populate DB if needed
+    # volumes:
+    #   - ./data/zencms.sql:/docker-entrypoint-initdb.d/init.sql
